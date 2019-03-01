@@ -11,6 +11,14 @@ import UIKit
 class ChartViewController: UIViewController {
 
     override func viewDidLoad() {
+        //设置navigation的titile
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        // 自定义view设置title
+        let titleLabel = UILabel(frame: CGRect(x:0, y:0, width:40, height:40))
+        titleLabel.text = "图表"
+        titleLabel.textColor = UIColor.black
+        self.navigationItem.titleView = titleLabel
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.

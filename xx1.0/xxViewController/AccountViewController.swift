@@ -20,10 +20,38 @@ class AccountViewController: UITableViewController{
     var imgName = ["吃饭","出行","购物","社交"]
     
     let Swidth = UIScreen.main.applicationFrame.size.width
+    
+    @objc  func leftClick()->Void {
+        
+        print("leftClick")
+        
+    }
+    
+    @objc func rightClick()->Void {
+        
+        print("rightClick")
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //设置navigation的titile
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        // 自定义view设置title
+        let titleLabel = UILabel(frame: CGRect(x:0, y:0, width:40, height:40))
+        titleLabel.text = "记账"
+        titleLabel.textColor = UIColor.black
+        self.navigationItem.titleView = titleLabel
+        
+        //设置左右两边的按钮
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"编辑按钮"), style: .plain, target: self, action: #selector(self.leftClick))
+        navigationItem.leftBarButtonItem?.tintColor = UIColor.gray
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"增加"), style: .plain, target: self, action: #selector(self.rightClick))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.gray
+        
+      
      
         //tableView
         let tableView = UITableView(frame: view.bounds, style: .grouped)
