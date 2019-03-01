@@ -36,6 +36,7 @@ class addBooksViewController: UITableViewController {
         titleLabel.textColor = UIColor.black
         self.navigationItem.titleView = titleLabel
         
+        //znavigation bar设置
         let leftButton = UIButton(frame: CGRect(x:0, y:0, width:40, height:40))
         let rightButton = UIButton(frame: CGRect(x:0, y:0, width:40, height:40))
         leftButton.setTitleColor(UIColor.black,for: UIControl.State.normal)
