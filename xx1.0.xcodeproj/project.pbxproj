@@ -19,6 +19,7 @@
 		58B111BE22017AD70094C9C3 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B111B922017AD70094C9C3 /* ChartViewController.swift */; };
 		58B111BF22017AD70094C9C3 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B111BA22017AD70094C9C3 /* AccountViewController.swift */; };
 		58B111C122017B180094C9C3 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B111C022017B180094C9C3 /* AddViewController.swift */; };
+		A6179AAA222924A600D9960E /* addBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6179AA9222924A600D9960E /* addBooksViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		58B111B922017AD70094C9C3 /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		58B111BA22017AD70094C9C3 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		58B111C022017B180094C9C3 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		A6179AA9222924A600D9960E /* addBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBooksViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		58B111B522017AD70094C9C3 /* xxViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A6179AA9222924A600D9960E /* addBooksViewController.swift */,
 				58B111BA22017AD70094C9C3 /* AccountViewController.swift */,
 				58B111B822017AD70094C9C3 /* DetailViewController.swift */,
 				58B111C022017B180094C9C3 /* AddViewController.swift */,
@@ -177,6 +180,7 @@
 				58B111AF220176660094C9C3 /* MCTabBar.swift in Sources */,
 				58B111B22201781D0094C9C3 /* xxTabBarViewController.swift in Sources */,
 				58B111B42201796F0094C9C3 /* xxNavigationController.swift in Sources */,
+				A6179AAA222924A600D9960E /* addBooksViewController.swift in Sources */,
 				58B111B0220176660094C9C3 /* MCTabBarController.swift in Sources */,
 				58B111BB22017AD70094C9C3 /* SettingViewController.swift in Sources */,
 				58B111BD22017AD70094C9C3 /* DetailViewController.swift in Sources */,

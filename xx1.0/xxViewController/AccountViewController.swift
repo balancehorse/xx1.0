@@ -28,8 +28,10 @@ class AccountViewController: UITableViewController{
     }
     
     @objc func rightClick()->Void {
-        
-        print("rightClick")
+        //实例化一个将要跳转的viewController
+        let addBook = addBooksViewController()
+        //跳转
+        self.navigationController?.pushViewController(addBook , animated: true)
         
     }
     
