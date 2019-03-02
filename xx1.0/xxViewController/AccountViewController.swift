@@ -9,15 +9,28 @@
 import UIKit
 
 class AccountViewController: UITableViewController{
+    
+    //剩余金额
+    var leftNumber = 0
+    //总金额
+    var countMoney = 0
+    
+    //字典形式
+    var dic1 = ["账本名":"吃饭","预设金额":600,"剩余金额":300,"是否为默认账本":1,"图标名":"吃饭","颜色代码":123] as [String : Any?]
+    var dic2 = ["账本名":"出行","预设金额":300,"剩余金额":100,"是否为默认账本":0,"图标名":"出行","颜色代码":123] as [String : Any?]
+    var dic3 = ["账本名":"购物","预设金额":600,"剩余金额":500,"是否为默认账本":0,"图标名":"购物","颜色代码":123] as [String : Any?]
+    var dic4 = ["账本名":"社交","预设金额":200,"剩余金额":100,"是否为默认账本":0,"图标名":"社交","颜色代码":123] as [String : Any?]
+    var dic5 = ["账本名":nil,"预设金额":-1,"剩余金额":nil,"是否为默认账本":nil,"图标名":nil,"颜色代码":nil] as [String : Any?]
 
     //测试用账本
-    var books = ["吃饭","出行","购物","社交"]
     
-    //账本金额
-    var moneyID = ["500","500","400","300"]
+    var books = [String]()
+
+    //账本剩余金额
+    var moneyID = [Int]()
     
     //图片名称
-    var imgName = ["吃饭","出行","购物","社交"]
+    var imgName = [String]()
     
     let Swidth = UIScreen.main.applicationFrame.size.width
     
@@ -80,8 +93,49 @@ class AccountViewController: UITableViewController{
         //不加载没有内容的cell
         self.tableView.tableFooterView = UIView()
         
+    
+     
+        
+        if (dic1["账本名"] != nil)  {
+            books.append(dic1["账本名"] as! String)
+            moneyID.append(dic1["剩余金额"] as! Int)
+            imgName.append(dic1["图标名"] as! String)
+            countMoney += dic1["预设金额"] as! Int
+            leftNumber += dic1["剩余金额"] as! Int
+            
+        }
+        if(dic2["账本名"] != nil)
+        {
+            books.append(dic2["账本名"] as! String)
+            moneyID.append(dic2["剩余金额"] as! Int)
+            imgName.append(dic2["图标名"] as! String)
+            countMoney += dic2["预设金额"] as! Int
+            leftNumber += dic2["剩余金额"] as! Int
+        }
+        if (dic3["账本名"] != nil){
+            books.append(dic3["账本名"] as! String)
+            moneyID.append(dic3["剩余金额"] as! Int)
+            imgName.append(dic3["图标名"] as! String)
+            countMoney += dic3["预设金额"] as! Int
+            leftNumber += dic3["剩余金额"] as! Int
+        }
+        if (dic4["账本名"] != nil){
+            books.append(dic4["账本名"] as! String)
+            moneyID.append(dic4["剩余金额"] as! Int)
+            imgName.append(dic4["图标名"] as! String)
+            countMoney += dic4["预设金额"] as! Int
+            leftNumber += dic4["剩余金额"] as! Int
+        }
+        if (dic5["预设金额"] as! Int != -1){
+            books.append(dic5["账本名"] as! String)
+            moneyID.append(dic5["剩余金额"] as! Int)
+            imgName.append(dic5["图标名"] as! String)
+            countMoney += dic5["预设金额"] as! Int
+            leftNumber += dic5["剩余金额"] as! Int
+        }
+        
         //创建页眉文字
-        var leftNumber = 1230.0
+        
         let leftOfMonth = UILabel.init(frame: CGRect(x: 2, y: -7, width: Swidth, height: 40))
         leftOfMonth.text = "本月剩余:  " + String(leftNumber)
         leftOfMonth.font = UIFont.systemFont(ofSize: 13)
@@ -104,7 +158,7 @@ class AccountViewController: UITableViewController{
         let balance = UIProgressView(progressViewStyle: .default)
         balance.frame = CGRect(x: 0, y: 0, width: Swidth / 1.10, height: 10)
         balance.layer.position = CGPoint(x: Swidth/2, y: 27)
-        balance.progress = 0.75
+        balance.progress = Float(leftNumber)/Float(countMoney)
         balance.progressTintColor = UIColor.init(red: 34/255.0, green: 162/255.0, blue: 221/255.0, alpha: 1) //进度颜色
         balance.trackTintColor = UIColor.init(red: 184/255.0, green: 184/255.0, blue: 173/255.0, alpha: 1) //剩余进度颜色
         balance.transform = CGAffineTransform(scaleX: 1.0, y: 2.0)
@@ -113,6 +167,7 @@ class AccountViewController: UITableViewController{
     //MARK: UITableViewDataSource
     // cell的个数
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   
         return books.count
     }
     // UITableViewCell
@@ -122,8 +177,9 @@ class AccountViewController: UITableViewController{
         if cell==nil {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellid)
         }
+
         cell?.textLabel?.text = books[indexPath.row]
-        cell?.detailTextLabel?.text = "¥  " + moneyID[indexPath.row]
+        cell?.detailTextLabel?.text = "¥  " + String(moneyID[indexPath.row])
         cell?.imageView?.image = UIImage(named: imgName[indexPath.row])
         cell?.imageView?.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         cell?.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
