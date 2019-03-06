@@ -74,6 +74,9 @@ class AccountViewController: UITableViewController{
         books = [String]()
         moneyID = [Int]()
         imgName = [String]()
+        countMoney = 0
+        leftNumber = 0
+        
         
         if (dicFromPList1?["预设金额"] as! Int != -1)  {
             books.append(dicFromPList1?["账本名"] as! String)
