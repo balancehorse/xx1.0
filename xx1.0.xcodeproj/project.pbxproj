@@ -20,6 +20,11 @@
 		58B111BF22017AD70094C9C3 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B111BA22017AD70094C9C3 /* AccountViewController.swift */; };
 		58B111C122017B180094C9C3 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B111C022017B180094C9C3 /* AddViewController.swift */; };
 		A6179AAA222924A600D9960E /* addBooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6179AA9222924A600D9960E /* addBooksViewController.swift */; };
+		A6179AB1222B800500D9960E /* dic1.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6179AB0222B800500D9960E /* dic1.plist */; };
+		A6179AB3222E677800D9960E /* dic2.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6179AB2222E677800D9960E /* dic2.plist */; };
+		A6179AB5222E67CC00D9960E /* dic3.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6179AB4222E67CC00D9960E /* dic3.plist */; };
+		A6179AB7222E67D800D9960E /* dic4.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6179AB6222E67D800D9960E /* dic4.plist */; };
+		A6179AB9222E67EC00D9960E /* dic5.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6179AB8222E67EC00D9960E /* dic5.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		58B111BA22017AD70094C9C3 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		58B111C022017B180094C9C3 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		A6179AA9222924A600D9960E /* addBooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBooksViewController.swift; sourceTree = "<group>"; };
+		A6179AB0222B800500D9960E /* dic1.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dic1.plist; sourceTree = "<group>"; };
+		A6179AB2222E677800D9960E /* dic2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dic2.plist; sourceTree = "<group>"; };
+		A6179AB4222E67CC00D9960E /* dic3.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dic3.plist; sourceTree = "<group>"; };
+		A6179AB6222E67D800D9960E /* dic4.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dic4.plist; sourceTree = "<group>"; };
+		A6179AB8222E67EC00D9960E /* dic5.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = dic5.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +88,11 @@
 				58B1119322007E710094C9C3 /* Assets.xcassets */,
 				58B1119522007E710094C9C3 /* LaunchScreen.storyboard */,
 				58B1119822007E710094C9C3 /* Info.plist */,
+				A6179AB0222B800500D9960E /* dic1.plist */,
+				A6179AB2222E677800D9960E /* dic2.plist */,
+				A6179AB4222E67CC00D9960E /* dic3.plist */,
+				A6179AB6222E67D800D9960E /* dic4.plist */,
+				A6179AB8222E67EC00D9960E /* dic5.plist */,
 			);
 			path = xx1.0;
 			sourceTree = "<group>";
@@ -163,7 +178,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				58B1119722007E710094C9C3 /* LaunchScreen.storyboard in Resources */,
+				A6179AB9222E67EC00D9960E /* dic5.plist in Resources */,
 				58B1119422007E710094C9C3 /* Assets.xcassets in Resources */,
+				A6179AB7222E67D800D9960E /* dic4.plist in Resources */,
+				A6179AB3222E677800D9960E /* dic2.plist in Resources */,
+				A6179AB5222E67CC00D9960E /* dic3.plist in Resources */,
+				A6179AB1222B800500D9960E /* dic1.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

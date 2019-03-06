@@ -15,13 +15,28 @@ class AccountViewController: UITableViewController{
     //总金额
     var countMoney = 0
     
-    //字典形式
-    var dic1 = ["账本名":"吃饭","预设金额":600,"剩余金额":300,"是否为默认账本":1,"图标名":"吃饭","颜色代码":123] as [String : Any?]
-    var dic2 = ["账本名":"出行","预设金额":300,"剩余金额":100,"是否为默认账本":0,"图标名":"出行","颜色代码":123] as [String : Any?]
-    var dic3 = ["账本名":"购物","预设金额":600,"剩余金额":500,"是否为默认账本":0,"图标名":"购物","颜色代码":123] as [String : Any?]
-    var dic4 = ["账本名":"社交","预设金额":200,"剩余金额":100,"是否为默认账本":0,"图标名":"社交","颜色代码":123] as [String : Any?]
-    var dic5 = ["账本名":nil,"预设金额":-1,"剩余金额":nil,"是否为默认账本":nil,"图标名":nil,"颜色代码":nil] as [String : Any?]
+//    //字典形式
+//    var dic1:NSDictionary = ["账本名":"吃饭","预设金额":600,"剩余金额":300,"是否为默认账本":1,"图标名":"吃饭","颜色代码":123] as [String : Any?] as NSDictionary
+//    var dic2:NSDictionary = ["账本名":"出行","预设金额":300,"剩余金额":100,"是否为默认账本":0,"图标名":"出行","颜色代码":123] as [String : Any?] as NSDictionary
+//    var dic3:NSDictionary = ["账本名":"购物","预设金额":600,"剩余金额":500,"是否为默认账本":0,"图标名":"购物","颜色代码":123] as [String : Any?] as NSDictionary
+//    var dic4:NSDictionary = ["账本名":"社交","预设金额":200,"剩余金额":100,"是否为默认账本":0,"图标名":"社交","颜色代码":123] as [String : Any?] as NSDictionary
+//    var dic5:NSDictionary = ["账本名":nil,"预设金额":-1,"剩余金额":nil,"是否为默认账本":nil,"图标名":nil,"颜色代码":nil] as [String : Any?] as NSDictionary
+    
+    //       //将可变字典对象写入到指定位置的属性列表文件
+    //        let b1:Bool = dic1.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist" , atomically: true)
+    //        let b2:Bool = dic2.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist" , atomically: true)
+    //        let b3:Bool = dic3.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist" , atomically: true)
+    //        let b4:Bool = dic4.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist" , atomically: true)
+    //        let b5:Bool = dic5.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist" , atomically: true)
 
+    //取账本信息
+    let dicFromPList1:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist")
+    let dicFromPList2:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist")
+    let dicFromPList3:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist")
+    let dicFromPList4:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist")
+    let dicFromPList5:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist")
+
+   
     //测试用账本
     
     var books = [String]()
@@ -48,9 +63,56 @@ class AccountViewController: UITableViewController{
         
     }
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+           //取账本信息
+    let dicFromPList1:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist")
+    let dicFromPList2:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist")
+    let dicFromPList3:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist")
+    let dicFromPList4:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist")
+    let dicFromPList5:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist")
+        
+        books = [String]()
+        moneyID = [Int]()
+        imgName = [String]()
+        
+        if (dicFromPList1?["预设金额"] as! Int != -1)  {
+            books.append(dicFromPList1?["账本名"] as! String)
+            moneyID.append(dicFromPList1?["剩余金额"] as! Int)
+            imgName.append(dicFromPList1?["图标名"] as! String)
+            countMoney += dicFromPList1?["预设金额"] as! Int
+            leftNumber += dicFromPList1?["剩余金额"] as! Int
+            
+        }
+        if(dicFromPList2?["预设金额"] as! Int != -1)
+        {
+            books.append(dicFromPList2?["账本名"] as! String)
+            moneyID.append(dicFromPList2?["剩余金额"] as! Int)
+            imgName.append(dicFromPList2?["图标名"] as! String)
+            countMoney += dicFromPList2?["预设金额"] as! Int
+            leftNumber += dicFromPList2?["剩余金额"] as! Int
+        }
+        if (dicFromPList3?["预设金额"] as! Int != -1){
+            books.append(dicFromPList3?["账本名"] as! String)
+            moneyID.append(dicFromPList3?["剩余金额"] as! Int)
+            imgName.append(dicFromPList3?["图标名"] as! String)
+            countMoney += dicFromPList3?["预设金额"] as! Int
+            leftNumber += dicFromPList3?["剩余金额"] as! Int
+        }
+        if (dicFromPList4?["预设金额"] as! Int != -1){
+            books.append(dicFromPList4?["账本名"] as! String)
+            moneyID.append(dicFromPList4?["剩余金额"] as! Int)
+            imgName.append(dicFromPList4?["图标名"] as! String)
+            countMoney += dicFromPList4?["预设金额"] as! Int
+            leftNumber += dicFromPList4?["剩余金额"] as! Int
+        }
+        if (dicFromPList5?["预设金额"] as! Int != -1){
+            //        if (dicFromPList5?["账本名"]  != nil){
+            books.append(dicFromPList5?["账本名"] as! String)
+            moneyID.append(dicFromPList5?["剩余金额"] as! Int)
+            imgName.append(dicFromPList5?["图标名"] as! String)
+            countMoney += dicFromPList5?["预设金额"] as! Int
+            leftNumber += dicFromPList5?["剩余金额"] as! Int
+        }
         
         //设置navigation的titile
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
@@ -66,8 +128,8 @@ class AccountViewController: UITableViewController{
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"增加"), style: .plain, target: self, action: #selector(self.rightClick))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.gray
         
-      
-     
+        
+        
         //tableView
         let tableView = UITableView(frame: view.bounds, style: .grouped)
         tableView.backgroundColor = UIColor.white;
@@ -81,7 +143,7 @@ class AccountViewController: UITableViewController{
         view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-       
+        
         //table页眉
         let backgroundView = UIView.init()
         backgroundView.frame = CGRect(x: 0, y: 0, width: Swidth, height: 40)
@@ -92,47 +154,6 @@ class AccountViewController: UITableViewController{
         
         //不加载没有内容的cell
         self.tableView.tableFooterView = UIView()
-        
-    
-     
-        
-        if (dic1["账本名"] != nil)  {
-            books.append(dic1["账本名"] as! String)
-            moneyID.append(dic1["剩余金额"] as! Int)
-            imgName.append(dic1["图标名"] as! String)
-            countMoney += dic1["预设金额"] as! Int
-            leftNumber += dic1["剩余金额"] as! Int
-            
-        }
-        if(dic2["账本名"] != nil)
-        {
-            books.append(dic2["账本名"] as! String)
-            moneyID.append(dic2["剩余金额"] as! Int)
-            imgName.append(dic2["图标名"] as! String)
-            countMoney += dic2["预设金额"] as! Int
-            leftNumber += dic2["剩余金额"] as! Int
-        }
-        if (dic3["账本名"] != nil){
-            books.append(dic3["账本名"] as! String)
-            moneyID.append(dic3["剩余金额"] as! Int)
-            imgName.append(dic3["图标名"] as! String)
-            countMoney += dic3["预设金额"] as! Int
-            leftNumber += dic3["剩余金额"] as! Int
-        }
-        if (dic4["账本名"] != nil){
-            books.append(dic4["账本名"] as! String)
-            moneyID.append(dic4["剩余金额"] as! Int)
-            imgName.append(dic4["图标名"] as! String)
-            countMoney += dic4["预设金额"] as! Int
-            leftNumber += dic4["剩余金额"] as! Int
-        }
-        if (dic5["预设金额"] as! Int != -1){
-            books.append(dic5["账本名"] as! String)
-            moneyID.append(dic5["剩余金额"] as! Int)
-            imgName.append(dic5["图标名"] as! String)
-            countMoney += dic5["预设金额"] as! Int
-            leftNumber += dic5["剩余金额"] as! Int
-        }
         
         //创建页眉文字
         
@@ -151,6 +172,15 @@ class AccountViewController: UITableViewController{
         //创建进度条
         loadingPressView()
         
+        
+        
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        
+      
     }
     
     //创建进度条
