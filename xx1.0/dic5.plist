@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>剩余金额</key>
-	<integer>300</integer>
+	<integer>0</integer>
 	<key>图标名</key>
-	<string>社交_red</string>
+	<string></string>
 	<key>是否为默认账本</key>
 	<false/>
 	<key>账本名</key>
-	<string>Mjh</string>
+	<string></string>
 	<key>预设金额</key>
-	<integer>300</integer>
+	<integer>-1</integer>
 	<key>颜色代码</key>
 	<integer>123</integer>
 </dict>

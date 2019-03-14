@@ -30,13 +30,14 @@ class AccountViewController: UITableViewController{
     //        let b5:Bool = dic5.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist" , atomically: true)
 
     //取账本信息
-    let dicFromPList1:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist")
-    let dicFromPList2:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist")
-    let dicFromPList3:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist")
-    let dicFromPList4:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist")
-    let dicFromPList5:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist")
+    var dicFromPList1:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist")
+    var dicFromPList2:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist")
+    var dicFromPList3:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist")
+    var dicFromPList4:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist")
+    var dicFromPList5:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist")
 
-   
+    var leftOfMonth:UILabel?
+    var tableView1:UITableView?
     //测试用账本
     
     var books = [String]()
@@ -49,12 +50,12 @@ class AccountViewController: UITableViewController{
     
     let Swidth = UIScreen.main.applicationFrame.size.width
     
-    @objc  func leftClick()->Void {
-        
-        print("leftClick")
-        
-    }
-    
+//    @objc  func leftClick()->Void {
+//
+//        print("leftClick")
+//
+//    }
+
     @objc func rightClick()->Void {
         //实例化一个将要跳转的viewController
         let addBook = addBooksViewController()
@@ -62,15 +63,13 @@ class AccountViewController: UITableViewController{
         self.navigationController?.pushViewController(addBook , animated: true)
         
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-           //取账本信息
-    let dicFromPList1:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist")
-    let dicFromPList2:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist")
-    let dicFromPList3:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist")
-    let dicFromPList4:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist")
-    let dicFromPList5:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist")
-        
+    func readDic() -> Void {
+        //取账本信息
+        dicFromPList1 = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist")
+        dicFromPList2 = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist")
+        dicFromPList3 = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist")
+        dicFromPList4 = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist")
+        dicFromPList5 = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist")
         books = [String]()
         moneyID = [Int]()
         imgName = [String]()
@@ -116,7 +115,12 @@ class AccountViewController: UITableViewController{
             countMoney += dicFromPList5?["预设金额"] as! Int
             leftNumber += dicFromPList5?["剩余金额"] as! Int
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+
         
+       
+        readDic()
         //设置navigation的titile
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         // 自定义view设置title
@@ -126,7 +130,8 @@ class AccountViewController: UITableViewController{
         self.navigationItem.titleView = titleLabel
         
         //设置左右两边的按钮
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"编辑按钮"), style: .plain, target: self, action: #selector(self.leftClick))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named:"编辑按钮"), style: .plain, target: self, action: #selector(self.leftClick))
+        self.navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.leftBarButtonItem?.tintColor = UIColor.gray
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"增加"), style: .plain, target: self, action: #selector(self.rightClick))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.gray
@@ -134,18 +139,18 @@ class AccountViewController: UITableViewController{
         
         
         //tableView
-        let tableView = UITableView(frame: view.bounds, style: .grouped)
-        tableView.backgroundColor = UIColor.white;
+        tableView1 = UITableView(frame: view.bounds, style: .grouped)
+        tableView1!.backgroundColor = UIColor.white;
         //去掉没有数据显示部分多余的分隔线
-        tableView.tableFooterView =  UIView.init(frame: CGRect.zero)
+        tableView1!.tableFooterView =  UIView.init(frame: CGRect.zero)
         //将分隔线offset设为零，即将分割线拉满屏幕
-        tableView.separatorInset = UIEdgeInsets(top: 45, left: 45, bottom: 45, right: 0)
+        tableView1!.separatorInset = UIEdgeInsets(top: 45, left: 45, bottom: 45, right: 0)
         
         //设置分隔线颜色
-        tableView.separatorColor = UIColor.gray
-        view.addSubview(tableView)
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView1!.separatorColor = UIColor.gray
+        view.addSubview(tableView1!)
+        tableView1!.dataSource = self
+        tableView1!.delegate = self
         
         //table页眉
         let backgroundView = UIView.init()
@@ -158,20 +163,12 @@ class AccountViewController: UITableViewController{
         //不加载没有内容的cell
         self.tableView.tableFooterView = UIView()
         
-        //创建页眉文字
-        
-        let leftOfMonth = UILabel.init(frame: CGRect(x: 2, y: -7, width: Swidth, height: 40))
-        leftOfMonth.text = "本月剩余:  " + String(leftNumber)
-        leftOfMonth.font = UIFont.systemFont(ofSize: 13)
-        leftOfMonth.textColor = UIColor.gray
-        view.addSubview(leftOfMonth)
-        
         let bgImage = UIImageView()
         bgImage.frame = CGRect(x: 0, y:10, width: Swidth, height: 600)
         bgImage.image = UIImage(named: "熊")
         bgImage.contentMode = .scaleAspectFit
         view.addSubview(bgImage)
-        
+        leftOfMonth = UILabel.init(frame: CGRect(x: 2, y: -7, width: Swidth, height: 40))
         //创建进度条
         loadingPressView()
         
@@ -180,14 +177,19 @@ class AccountViewController: UITableViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-      
-    }
+        }
     
     //创建进度条
     func loadingPressView() -> Void {
+        //创建页眉文字
+        
+        
+        leftOfMonth?.text = "本月剩余:  " + String(leftNumber)
+        leftOfMonth?.font = UIFont.systemFont(ofSize: 13)
+        leftOfMonth?.textColor = UIColor.gray
+        view.addSubview(leftOfMonth!)
+        
+      
         let balance = UIProgressView(progressViewStyle: .default)
         balance.frame = CGRect(x: 0, y: 0, width: Swidth / 1.10, height: 10)
         balance.layer.position = CGPoint(x: Swidth/2, y: 27)
@@ -216,11 +218,74 @@ class AccountViewController: UITableViewController{
         cell?.imageView?.image = UIImage(named: imgName[indexPath.row])
         cell?.imageView?.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         cell?.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-    
         return cell!
     }
     
-  
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        
+        super.setEditing(editing, animated: animated)
+        tableView1!.setEditing(editing, animated: true)
+    }
+    //设置点击删除之后的操作
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        readDic()
+        if tableView1?.cellForRow(at: indexPath)?.textLabel?.text == dicFromPList1!["账本名"] as? String{
+                dicFromPList1?.setValue("", forKeyPath: "账本名")
+                dicFromPList1?.setValue( -1, forKeyPath: "预设金额")
+                dicFromPList1?.setValue(0, forKeyPath: "剩余金额")
+                dicFromPList1?.setValue(false, forKeyPath: "是否为默认账本")
+                dicFromPList1?.setValue("", forKeyPath: "图标名")
+                dicFromPList1?.setValue(123, forKeyPath: "颜色代码")
+                dicFromPList1!.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist" , atomically: true)
+        }
+        if tableView1?.cellForRow(at: indexPath)?.textLabel?.text == dicFromPList2!["账本名"] as? String{
+            dicFromPList2?.setValue("", forKeyPath: "账本名")
+            dicFromPList2?.setValue( -1, forKeyPath: "预设金额")
+            dicFromPList2?.setValue(0, forKeyPath: "剩余金额")
+            dicFromPList2?.setValue(false, forKeyPath: "是否为默认账本")
+            dicFromPList2?.setValue("", forKeyPath: "图标名")
+            dicFromPList2?.setValue(123, forKeyPath: "颜色代码")
+            dicFromPList2!.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist" , atomically: true)
+        }
+        if tableView1?.cellForRow(at: indexPath)?.textLabel?.text == dicFromPList3!["账本名"] as? String{
+            dicFromPList3?.setValue("", forKeyPath: "账本名")
+            dicFromPList3?.setValue( -1, forKeyPath: "预设金额")
+            dicFromPList3?.setValue(0, forKeyPath: "剩余金额")
+            dicFromPList3?.setValue(false, forKeyPath: "是否为默认账本")
+            dicFromPList3?.setValue("", forKeyPath: "图标名")
+            dicFromPList3?.setValue(123, forKeyPath: "颜色代码")
+            dicFromPList3!.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist" , atomically: true)
+        }
+        if tableView1?.cellForRow(at: indexPath)?.textLabel?.text == dicFromPList4!["账本名"] as? String{
+            dicFromPList4?.setValue("", forKeyPath: "账本名")
+            dicFromPList4?.setValue( -1, forKeyPath: "预设金额")
+            dicFromPList4?.setValue(0, forKeyPath: "剩余金额")
+            dicFromPList4?.setValue(false, forKeyPath: "是否为默认账本")
+            dicFromPList4?.setValue("", forKeyPath: "图标名")
+            dicFromPList4?.setValue(123, forKeyPath: "颜色代码")
+            dicFromPList4!.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist" , atomically: true)
+        }
+        print(dicFromPList5!["账本名"])
+        if tableView1?.cellForRow(at: indexPath)?.textLabel?.text == dicFromPList5!["账本名"] as? String{
+            dicFromPList5?.setValue("", forKeyPath: "账本名")
+            dicFromPList5?.setValue( -1, forKeyPath: "预设金额")
+            dicFromPList5?.setValue(0, forKeyPath: "剩余金额")
+            dicFromPList5?.setValue(false, forKeyPath: "是否为默认账本")
+            dicFromPList5?.setValue("", forKeyPath: "图标名")
+            dicFromPList5?.setValue(123, forKeyPath: "颜色代码")
+            dicFromPList5!.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist" , atomically: true)
+        }
+        
+        readDic()
+        loadingPressView()
+        
+        tableView1!.deleteRows(at: [indexPath], with: .fade)
+        tableView1!.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+
+    }
+    
+    
     
     //MARK: UITableViewDelegate
     // 设置cell高度
