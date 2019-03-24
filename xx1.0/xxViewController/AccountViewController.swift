@@ -15,20 +15,6 @@ class AccountViewController: UITableViewController{
     //总金额
     var countMoney = 0
     
-//    //字典形式
-//    var dic1:NSDictionary = ["账本名":"吃饭","预设金额":600,"剩余金额":300,"是否为默认账本":1,"图标名":"吃饭","颜色代码":123] as [String : Any?] as NSDictionary
-//    var dic2:NSDictionary = ["账本名":"出行","预设金额":300,"剩余金额":100,"是否为默认账本":0,"图标名":"出行","颜色代码":123] as [String : Any?] as NSDictionary
-//    var dic3:NSDictionary = ["账本名":"购物","预设金额":600,"剩余金额":500,"是否为默认账本":0,"图标名":"购物","颜色代码":123] as [String : Any?] as NSDictionary
-//    var dic4:NSDictionary = ["账本名":"社交","预设金额":200,"剩余金额":100,"是否为默认账本":0,"图标名":"社交","颜色代码":123] as [String : Any?] as NSDictionary
-//    var dic5:NSDictionary = ["账本名":nil,"预设金额":-1,"剩余金额":nil,"是否为默认账本":nil,"图标名":nil,"颜色代码":nil] as [String : Any?] as NSDictionary
-    
-    //       //将可变字典对象写入到指定位置的属性列表文件
-    //        let b1:Bool = dic1.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist" , atomically: true)
-    //        let b2:Bool = dic2.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist" , atomically: true)
-    //        let b3:Bool = dic3.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist" , atomically: true)
-    //        let b4:Bool = dic4.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist" , atomically: true)
-    //        let b5:Bool = dic5.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist" , atomically: true)
-
     //取账本信息
     var dicFromPList1:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist")
     var dicFromPList2:NSDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist")
@@ -50,11 +36,6 @@ class AccountViewController: UITableViewController{
     
     let Swidth = UIScreen.main.applicationFrame.size.width
     
-//    @objc  func leftClick()->Void {
-//
-//        print("leftClick")
-//
-//    }
 
     @objc func rightClick()->Void {
         //实例化一个将要跳转的viewController
@@ -266,7 +247,6 @@ class AccountViewController: UITableViewController{
             dicFromPList4?.setValue(123, forKeyPath: "颜色代码")
             dicFromPList4!.write(toFile:"/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist" , atomically: true)
         }
-        print(dicFromPList5!["账本名"])
         if tableView1?.cellForRow(at: indexPath)?.textLabel?.text == dicFromPList5!["账本名"] as? String{
             dicFromPList5?.setValue("", forKeyPath: "账本名")
             dicFromPList5?.setValue( -1, forKeyPath: "预设金额")
@@ -295,7 +275,28 @@ class AccountViewController: UITableViewController{
     // 选中cell后执行此方法
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+        
+        
     }
+    
+    /// 例子
+//    private func example() {
+//        /// 文本框
+//        let textField = UITextField(frame: CGRect(x: 100, y: 120, width: 200, height: 35))
+//        textField.borderStyle = .roundedRect
+//        view.addSubview(textField)
+//
+//        /* -- CustomKeyboard --- */
+//        let keyboard = CustomKeyboard(view, field: textField)
+//        keyboard.style = .keyboard
+//        keyboard.isEnableKeyboard = true
+//        keyboard.whetherHighlight = true
+//        keyboard.frame.size.height = 300
+//        /// 淡蓝色
+//        let lightBlue = UIColor(red:0.45, green:0.69, blue:0.95, alpha:1.00)
+//        keyboard.customDoneButton(title: "确定", titleColor: .white, theme: lightBlue, target: self, callback: nil)
+//        textField.becomeFirstResponder()
+//    }
 }
 
 

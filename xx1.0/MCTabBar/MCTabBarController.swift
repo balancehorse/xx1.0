@@ -12,8 +12,12 @@ protocol MCTarBarControllerDelegate : NSObjectProtocol {
      func mcTabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController)
 }
 
-class MCTabBarController: UITabBarController,UITabBarControllerDelegate {
 
+
+class MCTabBarController: UITabBarController,UITabBarControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+
+    
     var mcTabBar = MCTabBar(frame: CGRect.zero)
     weak var mcDelegate : MCTarBarControllerDelegate?
     override func viewDidLoad() {
@@ -38,4 +42,16 @@ class MCTabBarController: UITabBarController,UITabBarControllerDelegate {
         self.selectedIndex = count/2 // 关联中间按钮
         self.tabBarController(self, didSelect: viewControllers![selectedIndex])
     }
+//    @objc func openCameraOrPhotoLibrary() {
+//        //使用打开相册和相机
+//        CameraHandler.shared.showActionSheet(vc: self)
+//        CameraHandler.shared.imagePickedBlock = {(image) in
+//            
+//            
+//        }
+   
 }
+
+
+
+

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:xx1.0.xcodeproj">
+      location = "group:/Users/balancehorse/Desktop/xx1.0/xx1.0/CustomKeyboard">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

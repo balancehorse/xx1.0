@@ -10,6 +10,8 @@ import UIKit
 
 class xxTabBarViewController: MCTabBarController,MCTarBarControllerDelegate {
 
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //选中时的颜色
@@ -17,7 +19,7 @@ class xxTabBarViewController: MCTabBarController,MCTarBarControllerDelegate {
         //透明设置为NO，显示白色，view的高度到tabbar顶部截止，YES的话到底部
         mcTabBar.isTranslucent = false
         mcTabBar.positon = .bulge
-        mcTabBar.centerImage = UIImage(named: "add")!
+        mcTabBar.centerImage = UIImage(named: "添加按钮_1")!
         self.mcDelegate = self
         addChildViewControllers()
     }
@@ -28,7 +30,7 @@ class xxTabBarViewController: MCTabBarController,MCTarBarControllerDelegate {
         addChildViewController(AccountViewController(), title: "", imageName: "account")
         addChildViewController(DetailViewController(), title: "", imageName: "detail")
         //中间这个不设置东西，只占位
-        addChildViewController(AddViewController(), title: "", imageName: "")
+        addChildViewController(AccountViewController(), title: "", imageName: "")
         addChildViewController(ChartViewController(), title: "", imageName: "chart")
         addChildViewController(SettingViewController(), title: "", imageName: "setting")
     }
@@ -51,24 +53,29 @@ class xxTabBarViewController: MCTabBarController,MCTarBarControllerDelegate {
     
     func mcTabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if tabBarController.selectedIndex == 2 {
-            rotationAnimation()
+//            rotationAnimation()
+            //使用打开相册和相机
+            CameraHandler.shared.showActionSheet(vc: self)
+            CameraHandler.shared.imagePickedBlock = {(image) in
+                self.imageView.image = image
+            }
         }else {
             removeAnimation()
         }
     }
     
-    // 旋转动画
-    func rotationAnimation() {
-        if "key" == self.mcTabBar.centerBtn.layer.animationKeys()?.first {
-            return
-        }
-        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        animation.toValue = NSNumber(value: Double.pi*2.0)
-        animation.duration = 3.0
-        animation.repeatCount = HUGE
-        self.mcTabBar.centerBtn.layer.add(animation, forKey: "key")
-    }
-    
+//    // 旋转动画
+//    func rotationAnimation() {
+//        if "key" == self.mcTabBar.centerBtn.layer.animationKeys()?.first {
+//            return
+//        }
+//        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+//        animation.toValue = NSNumber(value: Double.pi*2.0)
+//        animation.duration = 3.0
+//        animation.repeatCount = HUGE
+//        self.mcTabBar.centerBtn.layer.add(animation, forKey: "key")
+//    }
+//
     func removeAnimation() {
         self.mcTabBar.centerBtn.layer.removeAllAnimations()
     }

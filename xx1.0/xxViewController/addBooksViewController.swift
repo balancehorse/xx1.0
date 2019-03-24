@@ -12,11 +12,11 @@ class addBooksViewController: UITableViewController {
 
     let titleOfCell = ["账本","预设金额","图标","颜色","拍照默认账本"]
     //取账本信息
-    let dicFromPList1:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist") as! NSMutableDictionary
-    let dicFromPList2:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist") as! NSMutableDictionary
-    let dicFromPList3:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist") as! NSMutableDictionary
-    let dicFromPList4:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist") as! NSMutableDictionary
-    let dicFromPList5:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist") as! NSMutableDictionary
+    let dicFromPList1:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic1.plist") as? NSMutableDictionary
+    let dicFromPList2:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic2.plist") as? NSMutableDictionary
+    let dicFromPList3:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic3.plist") as? NSMutableDictionary
+    let dicFromPList4:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic4.plist") as? NSMutableDictionary
+    let dicFromPList5:NSMutableDictionary? = NSDictionary(contentsOfFile: "/Users/balancehorse/Desktop/xx1.0/xx1.0/dic5.plist") as? NSMutableDictionary
 
     var NewNameOfBook:String = "111"
     var NewMoney = -1
@@ -33,8 +33,6 @@ class addBooksViewController: UITableViewController {
     
     @objc func rightClick()->Void {
         
-//        NewNameOfBook = nameOfBook.text!
-//        NewMoney = Int(moneyOfBook.text!)!
         if (dicFromPList1?["预设金额"] as! Int == -1)  {
           
             dicFromPList1?.setValue(NewNameOfBook, forKeyPath: "账本名")

@@ -1,0 +1,5 @@
+platform :ios, '11.2'
+target 'xx1.0' do
+use_frameworks!
+pod 'Customkeyboard'
+end
