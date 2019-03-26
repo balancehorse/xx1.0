@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Customkeyboard
 
 class AccountViewController: UITableViewController{
     
@@ -275,28 +276,28 @@ class AccountViewController: UITableViewController{
     // 选中cell后执行此方法
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        
+        example()
         
     }
     
     /// 例子
-//    private func example() {
-//        /// 文本框
-//        let textField = UITextField(frame: CGRect(x: 100, y: 120, width: 200, height: 35))
-//        textField.borderStyle = .roundedRect
-//        view.addSubview(textField)
-//
-//        /* -- CustomKeyboard --- */
-//        let keyboard = CustomKeyboard(view, field: textField)
-//        keyboard.style = .keyboard
-//        keyboard.isEnableKeyboard = true
-//        keyboard.whetherHighlight = true
-//        keyboard.frame.size.height = 300
-//        /// 淡蓝色
-//        let lightBlue = UIColor(red:0.45, green:0.69, blue:0.95, alpha:1.00)
-//        keyboard.customDoneButton(title: "确定", titleColor: .white, theme: lightBlue, target: self, callback: nil)
-//        textField.becomeFirstResponder()
-//    }
+    private func example() {
+        /// 文本框
+        let textField = UITextField(frame: CGRect(x: 100, y: 120, width: 200, height: 35))
+        textField.borderStyle = .roundedRect
+        view.addSubview(textField)
+
+
+        let keyboard = CustomKeyboard(view, field: textField)
+        keyboard.style = .keyboard
+        keyboard.isEnableKeyboard = true
+        keyboard.whetherHighlight = true
+        keyboard.frame.size.height = 300
+        /// 淡蓝色
+        let lightBlue = UIColor(red:0.45, green:0.69, blue:0.95, alpha:1.00)
+        keyboard.customDoneButton(title: "确定", titleColor: .white, theme: lightBlue, target: self, callback: nil)
+        textField.becomeFirstResponder()
+    }
 }
 
 

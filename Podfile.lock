@@ -1,0 +1,21 @@
+PODS:
+  - Customkeyboard (2.2)
+
+DEPENDENCIES:
+  - Customkeyboard (from `https://github.com/ChinaHackers/CustomKeyboard`)
+
+EXTERNAL SOURCES:
+  Customkeyboard:
+    :git: https://github.com/ChinaHackers/CustomKeyboard
+
+CHECKOUT OPTIONS:
+  Customkeyboard:
+    :commit: 348e2ed7285da8059f9065a90f58d9834415cd92
+    :git: https://github.com/ChinaHackers/CustomKeyboard
+
+SPEC CHECKSUMS:
+  Customkeyboard: d7df8b2b40e7416caaae9a4a95a85a89a4a39702
+
+PODFILE CHECKSUM: 6ebd1db59a193171918c645cdb70f71cb74bb23f
+
+COCOAPODS: 1.5.3
